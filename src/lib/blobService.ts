@@ -19,14 +19,14 @@ export async function listBlobs(prefix = "uploads/") {
 
 export async function uploadBlob(
   file: File,
-  options?: { access?: "public" | "private"; prefix?: string }
+  options?: { prefix?: string }
 ): Promise<PutBlobResult> {
   const prefix = options?.prefix ?? "uploads";
   const safeName = file.name.replace(/\s+/g, "-").toLowerCase();
   const filename = `${prefix}/${Date.now()}-${safeName}`;
 
   return put(filename, file, {
-    access: options?.access ?? "public",
+    access: "public",
     token: assertToken(),
   });
 }

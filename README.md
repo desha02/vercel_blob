@@ -43,6 +43,7 @@ Open [http://localhost:3000](http://localhost:3000) to use the demo. Uploading, 
 ## How it works
 
 - `src/app/api/upload/route.ts` receives multipart form uploads, sends the file to Vercel Blob with `put`, and returns the resulting public URL.
+- All uploads are stored with `access: "public"` (the currently supported access level) so you can download them directly from the returned URL.
 - `src/app/api/blobs/route.ts` lists every blob stored under the `uploads/` prefix so the UI can show the table of files.
 - `src/app/api/delete/route.ts` accepts a blob pathname and removes it via the Blob API.
 - `src/app/components/blob-demo.tsx` is a client component that talks to those API routes and renders the interface.
